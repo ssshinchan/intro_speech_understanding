@@ -12,7 +12,9 @@ def next_birthday(date, birthdays):
     birthday - the next day, after given date, on which somebody has a birthday
     list_of_names - list of all people with birthdays on that date
     '''
-    birthday = (1,1)
-    list_of_names = []
-    return birthday, list_of_names
+    upcoming = [day for day in birthdays if day > date]
+    if not upcoming:
+        upcoming = list(birthdays)  # wrap to the next calendar year
+    birthday = min(upcoming)
+    return birthday, birthdays[birthday]
     
